@@ -1,0 +1,159 @@
+/* Compose Email Page Styles */
+
+.compose-page {
+    min-height: calc(100vh - 80px);
+    padding: var(--spacing-2xl) var(--spacing-lg);
+}
+
+.compose-container {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.compose-card {
+    padding: var(--spacing-2xl);
+}
+
+.compose-header {
+    text-align: center;
+    margin-bottom: var(--spacing-2xl);
+}
+
+.compose-header h1 {
+    font-size: var(--font-size-3xl);
+    margin-bottom: var(--spacing-sm);
+}
+
+.compose-header p {
+    color: var(--color-text-secondary);
+    margin-bottom: 0;
+}
+
+.compose-error {
+    background: rgba(239, 68, 68, 0.1);
+    border: 1px solid var(--color-error);
+    color: var(--color-error);
+    padding: var(--spacing-md);
+    border-radius: var(--radius-md);
+    margin-bottom: var(--spacing-lg);
+    font-size: var(--font-size-sm);
+}
+
+.compose-success {
+    background: rgba(16, 185, 129, 0.1);
+    border: 1px solid var(--color-success);
+    color: var(--color-success);
+    padding: var(--spacing-md);
+    border-radius: var(--radius-md);
+    margin-bottom: var(--spacing-lg);
+    font-size: var(--font-size-sm);
+}
+
+.compose-form {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-lg);
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-sm);
+}
+
+.form-group label {
+    font-weight: 600;
+    color: var(--color-text-primary);
+    font-size: var(--font-size-sm);
+}
+
+.compose-select {
+    width: 100%;
+    padding: var(--spacing-md);
+    background: var(--color-bg-secondary);
+    border: 1px solid var(--color-glass-border);
+    border-radius: var(--radius-md);
+    color: var(--color-text-primary);
+    font-size: var(--font-size-base);
+    font-family: var(--font-family);
+    transition: all var(--transition-base);
+    cursor: pointer;
+}
+
+.compose-select:hover {
+    border-color: rgba(16, 185, 129, 0.3);
+}
+
+.compose-select:focus {
+    outline: none;
+    border-color: var(--color-success);
+    box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.1);
+}
+
+.compose-textarea {
+    width: 100%;
+    padding: var(--spacing-md);
+    background: var(--color-bg-secondary);
+    border: 1px solid var(--color-glass-border);
+    border-radius: var(--radius-md);
+    color: var(--color-text-primary);
+    font-size: var(--font-size-base);
+    font-family: var(--font-family);
+    resize: vertical;
+    min-height: 200px;
+    transition: all var(--transition-base);
+}
+
+.compose-textarea:hover {
+    border-color: rgba(16, 185, 129, 0.3);
+}
+
+.compose-textarea:focus {
+    outline: none;
+    border-color: var(--color-success);
+    box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.1);
+}
+
+.compose-textarea::placeholder {
+    color: var(--color-text-muted);
+}
+
+.compose-actions {
+    display: flex;
+    gap: var(--spacing-md);
+    justify-content: flex-end;
+    margin-top: var(--spacing-lg);
+}
+
+.compose-empty {
+    text-align: center;
+    padding: var(--spacing-2xl);
+}
+
+.compose-empty h2 {
+    font-size: var(--font-size-2xl);
+    margin-bottom: var(--spacing-md);
+}
+
+.compose-empty p {
+    color: var(--color-text-secondary);
+    margin-bottom: var(--spacing-xl);
+}
+
+@media (max-width: 768px) {
+    .compose-page {
+        padding: var(--spacing-lg) var(--spacing-md);
+    }
+
+    .compose-card {
+        padding: var(--spacing-lg);
+    }
+
+    .compose-actions {
+        flex-direction: column-reverse;
+    }
+
+    .compose-actions button {
+        width: 100%;
+    }
+}

@@ -1,0 +1,88 @@
+/* Inbox & Outbox Shared Styles */
+
+.inbox-page,
+.outbox-page {
+    min-height: 100vh;
+    padding: var(--spacing-2xl) var(--spacing-lg);
+}
+
+.inbox-container,
+.outbox-container {
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.inbox-header,
+.outbox-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: var(--spacing-2xl);
+}
+
+.inbox-header h1,
+.outbox-header h1 {
+    font-size: var(--font-size-4xl);
+    margin-bottom: var(--spacing-xs);
+}
+
+.inbox-header p,
+.outbox-header p {
+    color: var(--color-text-secondary);
+    font-size: var(--font-size-base);
+}
+
+.inbox-loading,
+.outbox-loading {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: var(--spacing-2xl);
+    gap: var(--spacing-lg);
+}
+
+.inbox-loading p,
+.outbox-loading p {
+    color: var(--color-text-secondary);
+}
+
+.inbox-empty,
+.outbox-empty {
+    text-align: center;
+    padding: var(--spacing-2xl);
+}
+
+.empty-icon {
+    font-size: 5rem;
+    margin-bottom: var(--spacing-lg);
+}
+
+.inbox-empty h2,
+.outbox-empty h2 {
+    font-size: var(--font-size-2xl);
+    margin-bottom: var(--spacing-sm);
+}
+
+.inbox-empty p,
+.outbox-empty p {
+    color: var(--color-text-secondary);
+    font-size: var(--font-size-lg);
+}
+
+.inbox-list,
+.outbox-list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-md);
+}
+
+@media (max-width: 768px) {
+
+    .inbox-header,
+    .outbox-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: var(--spacing-md);
+    }
+}
