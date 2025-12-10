@@ -132,6 +132,29 @@ export const EmailProvider = ({ children }) => {
         }
     };
 
+    /**
+     * Generate email content using AI
+     */
+    const generateAIEmail = async (prompt) => {
+        try {
+            setLoading(true);
+            setError(null);
+            const response = await api.post('/email/generate-ai', { prompt });
+            return {
+                success: true,
+                subject: response.data.data.subject,
+                body: response.data.data.body
+            };
+        } catch (err) {
+            const message = err.response?.data?.message || 'Failed to generate email content';
+            setError(message);
+            return { success: false, error: message };
+        } finally {
+            setLoading(false);
+        }
+    };
+
+
     const value = {
         tempEmails,
         inbox,
@@ -143,7 +166,8 @@ export const EmailProvider = ({ children }) => {
         fetchOutbox,
         getEmail,
         sendEmail,
-        deleteEmail
+        deleteEmail,
+        generateAIEmail
     };
 
     return <EmailContext.Provider value={value}>{children}</EmailContext.Provider>;

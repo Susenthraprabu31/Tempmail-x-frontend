@@ -21,9 +21,15 @@ const Compose = () => {
     const [error, setError] = useState('');
     const [success, setSuccess] = useState(false);
 
-    const { sendEmail, tempEmails } = useEmail();
+    const { sendEmail, tempEmails, generateAIEmail } = useEmail();
     const { user } = useAuth();
     const navigate = useNavigate();
+
+    // AI Generation states
+    const [aiPrompt, setAiPrompt] = useState('');
+    const [aiLoading, setAiLoading] = useState(false);
+    const [aiError, setAiError] = useState('');
+
 
     // Get user's temp emails
     const userTempEmails = [...(user?.tempEmails || []), ...tempEmails];
@@ -60,6 +66,30 @@ const Compose = () => {
 
         setLoading(false);
     };
+
+    const handleAIGenerate = async () => {
+        if (!aiPrompt.trim()) {
+            setAiError('Please enter a prompt for AI generation');
+            return;
+        }
+
+        setAiError('');
+        setAiLoading(true);
+
+        const result = await generateAIEmail(aiPrompt);
+
+        if (result.success) {
+            // Populate subject and body with AI-generated content
+            setSubject(result.subject);
+            setBody(result.body);
+            setAiPrompt(''); // Clear prompt after successful generation
+        } else {
+            setAiError(result.error);
+        }
+
+        setAiLoading(false);
+    };
+
 
     if (userTempEmails.length === 0) {
         return (
@@ -128,6 +158,49 @@ const Compose = () => {
                                 onChange={(e) => setTo(e.target.value)}
                                 required
                             />
+
+                            {/* AI Email Generator */}
+                            <div className="ai-composer-section">
+                                <div className="ai-composer-header">
+                                    <label>✨ AI Email Generator</label>
+                                    <span className="ai-badge">NEW</span>
+                                </div>
+                                <p className="ai-composer-description">
+                                    Describe what you want to write (e.g., "sick leave email", "meeting request")
+                                </p>
+
+                                <div className="ai-input-group">
+                                    <input
+                                        type="text"
+                                        value={aiPrompt}
+                                        onChange={(e) => setAiPrompt(e.target.value)}
+                                        placeholder="e.g., sick leave email for tomorrow"
+                                        className="ai-prompt-input"
+                                        onKeyPress={(e) => {
+                                            if (e.key === 'Enter') {
+                                                e.preventDefault();
+                                                handleAIGenerate();
+                                            }
+                                        }}
+                                    />
+                                    <Button
+                                        type="button"
+                                        variant="primary"
+                                        onClick={handleAIGenerate}
+                                        loading={aiLoading}
+                                        className="ai-generate-btn"
+                                    >
+                                        {aiLoading ? '🤖 Generating...' : '✨ Generate'}
+                                    </Button>
+                                </div>
+
+                                {aiError && (
+                                    <div className="ai-error">
+                                        {aiError}
+                                    </div>
+                                )}
+                            </div>
+
 
                             <Input
                                 type="text"
